@@ -2,7 +2,13 @@
   <div>
     
   <banner 
-    :list =banner_img_list name = "img_link" id="id">
+    :list =banner_img_list 
+    name = "img_link" 
+    id="id"
+    width="100vw"
+    height="800px"
+    time="3000"
+    >
   </banner>
 
   </div>
