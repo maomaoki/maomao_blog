@@ -1,0 +1,16 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+:root{
+    --nav_bg:#fff;
+    --font_color:#fff;
+    --hove_color:aqua;
+    --search_color:#fff;
+    --sun_color:rgb(255, 136, 0);
+    --moon_color:aqua;
+    --logo_color:aqua;
+}
