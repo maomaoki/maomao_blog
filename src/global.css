@@ -2,10 +2,25 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
 }
 
+a{
+    text-decoration: none;
+    color: var(--text);
+    font-size: 14px;
+}
+
+span{
+    font-size: 14px;
+}
+
+ul li{
+    list-style: none;
+}
 
 :root{
+    --body_bg:#f0eeee;
     --nav_bg:#fff;
     --font_color:#fff;
     --hove_color:aqua;
@@ -13,4 +28,24 @@
     --sun_color:rgb(255, 136, 0);
     --moon_color:aqua;
     --logo_color:aqua;
+
+
+    /* nav 滚动后效果 */
+
+    --show_body_bg:#333;
+    --show_nav_bg:#333;
+    --show_font_color:#333;
+    --show_hove_color:#333;
+    --show_search_color:#333;
+    --show_sun_color:#333;
+    --show_moon_color:#333;
+    --show_logo_color:#333;
+
+
+
+
+    --h2:#333;
+    --text:#555;
+    --main_bg:#fff;
+    --a_link:#1890ff;
 }

@@ -6,10 +6,9 @@
 </template>
   
 <script lang='ts' setup>
-import navbar from './components/Navber.vue'
 import { reactive, toRefs , ref } from 'vue'
-  
+import navbar from './components/Navber.vue'  
 </script>
-<style lang='less' scoped >
-  
+<style lang='less'>
+
 </style>

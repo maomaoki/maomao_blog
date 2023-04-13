@@ -1,11 +1,11 @@
 <template>
   <div class="top_list">
         <div class="top_list_btn">
-            <span>猫猫</span>
+            <span>{{ props.title }}</span>
             <i class="fa fa-angle-down"></i>
         </div>
         <ul class="top_list_box">
-          <router-link v-for="item in list" :to="item.link" custom v-slot="{navigate,isActive}">
+          <router-link v-for="item in props.list" :to="item.link" custom v-slot="{navigate,isActive}">
             <li @click="navigate">{{ item.name }}</li>
           </router-link>
         </ul>
@@ -20,10 +20,32 @@ import {router_link} from '../types/global'
 // 设置 navigate 这个类型 (ts)
 let navigate:router_link
 
-defineProps({
+let props = defineProps({
+
+    title:{
+        type:String,
+        default:"maomao"
+    },
+
     list:{
         type:Object, 
-    }
+    },
+    spanColor:{
+        type:String,
+        default:"#fff"
+    },
+    line:{
+        type:String,
+        default:"#fff" 
+    },
+    bgColor:{
+        type:String,
+        default:"#fff" 
+    },
+    hoverColor:{
+        type:String,
+        default:"aqua" 
+    },
 })
 
 
@@ -44,12 +66,14 @@ defineProps({
                 width: 100%;
                 text-align: center;
                 padding: 10px 0;
-                color:var(--font_color);
+                color:v-bind(spanColor);
                 &:hover{
-                    color: var(--hove_color);
+                    color: v-bind(hoverColor);
                 }
                 span{
                  margin-right: 5px;
+                 font-size: 16px;
+                 Letter-spacing:2px;
                 }
             }
                     
@@ -68,13 +92,14 @@ defineProps({
                     list-style: none;
                     cursor: pointer;
                     padding: 6px;  
-                    border-bottom: 1px dashed #c1c1c1; 
-                    color: var(--font_color);
+                    border-bottom: 1px dashed; 
+                    border-bottom-color: v-bind(line);
+                    color: v-bind(bgColor);
                     transition: all 0.3s;
 
                     &:hover{
-                        background-color: rgba(255, 255, 255, 0.3);
-                        color: var(--hove_color);
+                        background-color: v-bind(bgColor);
+                        color: v-bind(hoverColor);
                     }
                 }
              }

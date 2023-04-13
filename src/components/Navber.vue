@@ -1,5 +1,5 @@
 <template>
-  <div class="gweb_nav">
+  <div :class="isScolly?'gweb_nav show':'gweb_nav'">
    
     <div class="gweb_nav_content">
 
@@ -34,8 +34,14 @@
                 <i :class="global_color"></i>
             </button>
            
-            <menu-down :list="list_down">
-                
+            <menu-down 
+            :list="list_down"
+            title="猫猫"
+            class="menu_info"
+            :spanColor="spanColor"
+            :line="line"
+            :bgColor="bgColor"
+            :hoverColor="hoverColor">  
             </menu-down>
             
         </div>
@@ -51,7 +57,7 @@ import MenuDown from '../tools/MenuDown.vue'
 
 
 // 引入 vue 一些需要的方法
-import { reactive, toRefs , ref  } from 'vue'
+import { reactive, toRefs , ref, onMounted ,onBeforeUnmount } from 'vue'
 
 import {router_link} from '../types/global'
 
@@ -140,6 +146,52 @@ const chagneColor = ()=>{
 }
 
 
+// 滚动条事件
+let spanColor = ref('#fff')
+let bgColor =  ref('#fff')
+let line = ref("#fff")
+let hoverColor = ref("aqua")
+
+let isScolly = ref(false)
+
+
+// 滚动条触发事件
+function changeScolly (){
+
+isScolly.value = true  
+spanColor.value = '#333'
+bgColor.value =  '#fff'
+line.value = "#333"
+hoverColor.value = "#333"
+
+}
+
+
+onMounted(()=>{
+    window.addEventListener("scroll",()=>{
+        let s = document.documentElement.scrollTop || document.body.scrollTop
+        if(s>200){    
+            isScolly.value = true  
+            spanColor.value = '#333'
+            bgColor.value =  '#fff'
+            line.value = "#333"
+            hoverColor.value = "#333"
+        }else{
+            isScolly.value = false  
+            spanColor.value = '#fff'
+            bgColor.value =  '#fff'
+            line.value = "aqua"
+            hoverColor.value = "#fff"
+        }
+         
+    })
+})
+
+
+onBeforeUnmount(()=>{
+    window.removeEventListener("scroll",()=>{})
+})
+
 
 
 </script>
@@ -147,7 +199,7 @@ const chagneColor = ()=>{
     
     .gweb_nav{
         width: 100%;
-        height: 80px;
+        height: 60px;
         position: fixed;
         top: 0;
         left: 0;
@@ -168,18 +220,18 @@ const chagneColor = ()=>{
             // log
             .gweb_nav_log{
                 width: 10%;
+                transform: scale(.7) translate(-22px);
+                padding-left: 24px;
 
                 .p1{
                     font-size: 24px;
-                    font-weight: 600;
-                    color: var(--logo_color);
+                    letter-spacing: 2px;
+                   
                 }
                 .p2{
-                    font-size: 12px;
-                    font-weight: 200;
-                    text-indent: 3px;
-                    letter-spacing: 1px;
-                    color: var(--font_color);
+                    font-size:12px;
+                    letter-spacing: 2px;
+                    
                     
                 }
             }
@@ -189,21 +241,17 @@ const chagneColor = ()=>{
                 width: 70%;
                 display: flex;
                 align-items: center;
-                margin-left: 30px;
                 
                 .nav_list{
                     span{
                         margin: 0 10px;
-                        padding: 0 15px;
+                        padding: 0 10px;
                         cursor: pointer;
                         transition: all 0.3s;
                         font-size: 16px;
                         font-weight: 500;
-                        letter-spacing:5px;
-                        color: var(--font_color);
-                        &:hover{
-                            color: var(--hove_color);
-                        }
+                        letter-spacing:3px;
+                          
                     }  
                 }
 
@@ -221,9 +269,8 @@ const chagneColor = ()=>{
                         justify-content: center;
                         width: 40px;
                         height: 35px;
-                        border: none; 
                         // color: #fff;
-                        color: var(--search_color);
+                        
                         background-color: transparent;
                         cursor: pointer;
                         transition: all 0.5s ease;
@@ -231,7 +278,7 @@ const chagneColor = ()=>{
                         font-size: 16px;
                         }
 
-                        input{
+                    input{
                             width: 0px;
                             height: 35px;
                             overflow: hidden;
@@ -239,20 +286,18 @@ const chagneColor = ()=>{
                             padding: 0;
                             transition: all 0.6s ease;
                             opacity: 0;
-                            border: none;
+
                             background-color: inherit;
-                            color:var(--font_color) ;
+                           
                         }
 
-                        button.isseach{
-                            border: 1px solid #c1c1c1;
-                            border-radius: 0 5px 5px 0;
+                    button.isseach{
+                        border-radius: 0 5px 5px 0;
                         }
-                        input.isseach{
+                    input.isseach{
                             width: 260px;
                             opacity: 1;
                             padding: 0 10px;
-                            border: 1px solid #c1c1c1;
                             border-right: none;
                             margin-left: 30px;
                             border-radius: 5px 0 0 5px;
@@ -289,19 +334,8 @@ const chagneColor = ()=>{
                         line-height: 35px;
                     }
 
-
-                    i.fa-sun-o{
-                        color: var(--sun_color);
-                        &:hover{
-                            color: var(--moon_color);
-                        }
-                    }
-                    i.fa-moon-o{
-                        color: var(--moon_color);
-                        &:hover{
-                            color: var(--sun_color);
-                        }
-                    }
+                   
+                   
                 }
 
 
@@ -311,5 +345,137 @@ const chagneColor = ()=>{
 
         }
 
+
+
+        // 颜色提出写
+        //log
+        .gweb_nav_log{
+            .p1{
+            color: var(--logo_color);
+        }
+
+        .p2{
+            color: var(--font_color);
+         }
+        }
+        
+       
+
+        // 按钮列表
+        .gweb_nav_left{
+              span{
+                color: var(--font_color);
+                &:hover{
+                   color: var(--hove_color);
+                }
+            
+                }
+
+                button{
+                    color: var(--search_color);
+                    border: none;
+                    }
+
+                input{
+                    color:var(--font_color) ;
+                    border: none;
+                }
+
+                button.isseach{
+                    border: 1px solid #c1c1c1;
+                }
+
+                input.isseach{
+                    border: 1px solid #c1c1c1;
+                }
+
+        }
+
+
+        // 个人信息
+        .gweb_nav_right{
+            button{
+                i.fa-sun-o{ 
+                        color: var(--sun_color);
+                        &:hover{
+                         color: var(--moon_color);
+                        }
+                    }
+                    i.fa-moon-o{
+                        color: var(--moon_color);
+                        &:hover{
+                            color: var(--sun_color);
+                        }
+                    }
+            } 
+        }   
+
     }
+
+
+
+    // 滚动效果
+    .gweb_nav.show{
+        background-color: #fff;
+
+        .gweb_nav_log{
+            .p1{
+            color: var(--show_logo_color);
+        }
+
+        .p2{
+            color: var(--show_font_color);
+         }
+        }
+        
+       
+
+        // 按钮列表
+        .gweb_nav_left{
+            .nav_list span{
+            color: var(--show_font_color) 
+                }
+
+                button{
+                    color: var(--show_search_color);
+                    border: none;
+                    }
+
+                input{
+                    color:var(--show_font_color) ;
+                    border: none;
+                }
+
+                button.isseach{
+                    border: 1px solid #c1c1c1;
+                }
+
+                input.isseach{
+                    border: 1px solid #c1c1c1;
+                }
+
+        }
+
+
+        // 个人信息
+        .gweb_nav_right{
+            button{
+                i.fa-sun-o{ 
+                        color: var(--show_sun_color);
+                        &:hover{
+                         color: var(--show_moon_color);
+                        }
+                    }
+                    i.fa-moon-o{
+                        color: var(--show_moon_color);
+                        &:hover{
+                            color: var(--show_sun_color);
+                        }
+                    }
+            } 
+        }  
+
+    }   
+
+    
 </style>
