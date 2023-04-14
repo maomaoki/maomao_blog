@@ -49,9 +49,8 @@ import { reactive, toRefs , ref ,defineProps} from 'vue'
             justify-content: space-between;
             align-items: center;
             border-radius: 0 0 5px 5px;
-            background-color: var(--main_bg);
+           
             margin-top: 1px;
-            padding: 10px 20px 20px; 
         }
 
 

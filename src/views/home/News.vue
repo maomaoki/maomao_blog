@@ -1,14 +1,14 @@
 <template>
   
+
     
-    <Banner :list="banner_img_list" name="img_link"></Banner>
+  <Banner :list="banner_img_list" name="img_link"></Banner>
   
 </template>
     
 <script lang='ts' setup>
 import { reactive, toRefs , ref } from 'vue'
 import Banner from '../../components/Banner.vue'
-
     
 let banner_img_list = reactive([
 {

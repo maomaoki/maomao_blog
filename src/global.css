@@ -28,6 +28,7 @@ ul li{
     --sun_color:rgb(255, 136, 0);
     --moon_color:aqua;
     --logo_color:aqua;
+    --active_label:aqua;
 
 
     /* nav 滚动后效果 */
@@ -48,4 +49,6 @@ ul li{
     --text:#555;
     --main_bg:#fff;
     --a_link:#1890ff;
+    --bg_darken:#e2e2e2;
+    --bg:#f0eeee;
 }

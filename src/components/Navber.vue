@@ -57,7 +57,7 @@ import MenuDown from '../tools/MenuDown.vue'
 
 
 // 引入 vue 一些需要的方法
-import { reactive, toRefs , ref, onMounted ,onBeforeUnmount } from 'vue'
+import { reactive, toRefs , ref, onMounted ,onBeforeUnmount, watch } from 'vue'
 
 import {router_link} from '../types/global'
 
@@ -147,43 +147,34 @@ const chagneColor = ()=>{
 
 
 // 滚动条事件
-let spanColor = ref('#fff')
-let bgColor =  ref('#fff')
-let line = ref("#fff")
-let hoverColor = ref("aqua")
 
 let isScolly = ref(false)
 
 
-// 滚动条触发事件
-function changeScolly (){
+let spanColor = ref("#fff")
+let bgColor =  ref('#fff')
+let line = ref("#fff")
+let hoverColor = ref("aqua")
+ 
 
-isScolly.value = true  
-spanColor.value = '#333'
-bgColor.value =  '#fff'
-line.value = "#333"
-hoverColor.value = "#333"
 
-}
+// 监听 isScolly.value 
+watch(()=>isScolly.value,()=>{
+
+spanColor.value = isScolly.value?'#333':"#fff"
+bgColor.value =  isScolly.value?'#fff':"#fff"
+line.value = isScolly.value?'#333':"#fff"
+hoverColor.value = isScolly.value?'aqua':"aqua"
+    
+})
+
+
 
 
 onMounted(()=>{
     window.addEventListener("scroll",()=>{
         let s = document.documentElement.scrollTop || document.body.scrollTop
-        if(s>200){    
-            isScolly.value = true  
-            spanColor.value = '#333'
-            bgColor.value =  '#fff'
-            line.value = "#333"
-            hoverColor.value = "#333"
-        }else{
-            isScolly.value = false  
-            spanColor.value = '#fff'
-            bgColor.value =  '#fff'
-            line.value = "aqua"
-            hoverColor.value = "#fff"
-        }
-         
+        isScolly.value = s>200?true:false 
     })
 })
 

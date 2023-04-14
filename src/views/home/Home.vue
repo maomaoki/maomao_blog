@@ -1,10 +1,13 @@
 <script lang='ts' setup>
 import banner from '../../components/Banner.vue'
 import card from '../../tools/Card.vue'
-import { reactive, toRefs , ref } from 'vue'
+import pager from '../../tools/Pager.vue'
+
+import { reactive, toRefs , ref ,inject, onMounted , watch } from 'vue'
 
 
 // 到时请求数据
+// 轮播图照片数据
 let banner_img_list = reactive([
 {
   id:1,
@@ -28,6 +31,60 @@ let banner_img_list = reactive([
 },
 
 ])
+
+
+// 文章卡片数据
+
+let active_card = reactive([
+  {
+    id:1,
+    imgLink:"http://blog.fengfengzhidao.com/uploads/file/105747KJAJa.jpg",
+    title:"vue全基础",
+    activeLink:"#",
+    active:"vue基本概述Vue (读音 /vjuː/，类似于 view) 是一套用于构建用户界面的渐进式框架。Vue.js是一套构建用户界面的渐进式框架，采用自底向上增量开发的设计。Vue的核心库关注于",
+    activeInfo:{
+      type:"0",
+      time:"2023-03-26",
+      thumbs:"3",
+      look:"66",
+      comment:"20",
+      star:"99"
+    }
+  },
+  {
+    id:2,
+    imgLink:"	http://blog.fengfengzhidao.com/uploads/file/235920pM89Q.jpg",
+    title:"首页的一些组件",
+    activeLink:"#",
+    active:`gvb_cardemplate><div class="gvb_card_view"><div class="title"><h2>{{ props.titl`,
+    activeInfo:{
+      type:"1",
+      time:"2023-03-28",
+      thumbs:"36",
+      look:"666",
+      comment:"99",
+      star:"99"
+    }
+  },
+  {
+    id:3,
+    imgLink:"http://blog.fengfengzhidao.com/uploads/file/33.jpg",
+    title:"首页的一些组件",
+    activeLink:"#",
+    active:`gvb_cardemplate><div class="gvb_card_view"><div class="title"><h2>{{ props.titl`,
+    activeInfo:{
+      type:"1",
+      time:"2023-03-28",
+      thumbs:"36",
+      look:"666",
+      comment:"99",
+      star:"99"
+    }
+  }
+])
+
+
+
 
 </script>
 
@@ -60,26 +117,138 @@ let banner_img_list = reactive([
 
       <!-- 文章列表卡片 -->
       <card title="博客文章" class="active_card">
-        <ul>
-          <li>
-            
+        <ul> 
+          <li v-for="(item,index) in active_card" :key="item.id && item.title">
+            <a :href="item.activeLink" class="">
             <div class="left">
               <div>
-                <img src="http://blog.fengfengzhidao.com/uploads/file/105747KJAJa.jpg" alt="">
+                <img :src="item.imgLink" alt="">
               </div>
             </div>
 
             <div class="right">
-
+            
+              <h2>{{ item.title}}</h2>
+              <p>{{ item.active }}</p>
+              <div class="article_info">
+                <span class="active_type">{{ item.activeInfo.type==='0' ?'前端':'后端' }}</span>
+                <span><i class="fa fa-clock-o"></i>{{ item.activeInfo.time }}</span>
+                <span><i class="fa fa-thumbs-up"></i>{{ item.activeInfo.thumbs }}</span>
+                <span><i class="fa fa-eye"></i>{{ item.activeInfo.look }}</span>
+                <span><i class="fa fa-comments"></i>{{ item.activeInfo.comment }}</span>
+                <span><i class="fa fa-star-o"></i>{{ item.activeInfo.star }}</span>
+              </div>
             </div>
+              </a>
           </li>
         </ul>
-
       </card>
+
+      <!-- 分页器 -->
+      <pager class="list_pager"></pager>
 
     </div>
     <div class="right">
         
+      <!-- 个人名片 -->
+      <div class="mycard">
+
+        <div class="title">
+          <h3>个人名片</h3>
+          <h4>MY</h4>
+          <h4>PROFILE</h4>
+          <img src="src/assets/images/400x400.png" alt="我的微信">
+        </div>
+        <div class="jieqi">
+          <img src="http://blog.fengfengzhidao.com/static/24_hourse/4.png" alt="">
+        </div>
+        <div class="info">
+          <p>Name 猫猫mao</p>
+          <p>JOB 前端小菜鸡</p>
+          <p>ADDR 喵星光之国</p>
+        </div>
+      </div>
+
+
+      <!-- 标签云 -->
+      <card title="标签云" class="gweb_label">
+        <div class="bdoy">
+          <ul>
+            <li>
+              <span>前端</span>
+              <i>24</i>
+            </li>
+            <li>
+              <span>前端</span>
+              <i>24</i>
+            </li>
+            <li>
+              <span>前端</span>
+              <i>24</i>
+            </li>
+            <li>
+              <span>前端</span>
+              <i>24</i>
+            </li>
+            <li>
+              <span>前端</span>
+              <i>24</i>
+            </li>
+            <li>
+              <span>前端</span>
+              <i>24</i>
+            </li>
+            <li>
+              <span>前端</span>
+              <i>24</i>
+            </li>
+          </ul>
+        </div>
+      </card>
+
+      <!-- 建站信息 -->
+      <card title="建站信息" class="gweb_info">
+
+        <div class="body">
+
+          <div>
+            <b>建站时间:</b>
+            <span>2022-12-28</span>
+          </div>
+          <div>
+            <b>网站程序:</b>
+            <span>Vue3+Go</span>
+          </div>
+          <div>
+            <b>运行时间:</b>
+            <span>58天10时22分14秒</span>
+          </div>
+          <div>
+            <b>总访问量:</b>
+            <span>66666</span>
+          </div>
+          <div>
+            <b>博客文章:</b>
+            <span>12</span>
+          </div>
+          <div>
+            <b>联系我:</b>
+            <div class="my_info_img">
+              <div class="qq">
+                <img src="src/assets/images/400x400.png" alt="">
+                <span>我的QQ</span>
+              </div>
+              <div class="wx">
+                <img src="src/assets/images/400x400.png" alt="">
+                <span>我的WX</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </card>
+
     </div>
   </div>
    
@@ -96,6 +265,9 @@ let banner_img_list = reactive([
   margin: 0 auto;
   width: 1200px;
 
+  display: flex;
+  justify-content: space-between;
+
 
   .left{
 
@@ -106,6 +278,8 @@ let banner_img_list = reactive([
       margin-bottom: 25px;
 
       .body{
+        padding: 10px 20px 20px; 
+        background-color: var(--main_bg);
         .index{
                 width: 5%;
             }
@@ -125,6 +299,22 @@ let banner_img_list = reactive([
 
       ul{
         li{
+          transition: all .3s;
+          &:nth-child(1) a{
+              border-radius: 0 0 5px 5px;
+            }
+            &:not(:nth-child(1)):hover{
+              transform: translateY(-10px);
+            }
+
+
+          a{
+            display: flex;
+            background-color: var(--main_bg);
+            border-radius: 5px;
+            margin-bottom: 20px;
+           
+
           .left{
             width: 30%;
             padding: 20px 10px 20px 20px;
@@ -132,22 +322,245 @@ let banner_img_list = reactive([
               width: 100%;
               border-radius: 5px;
               overflow: hidden;
+              cursor: pointer;
+              
               img{
                 width: 100%;
                 transition: all .3s;
                 display: block;
+                &:hover{
+                transform: scale(1.05);
+              }
               }
             }
           }
+
+          .right{
+            width: 70%;
+            padding: 20px 20px 20px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: baseline;
+            justify-content: space-between;
+
+            h2{
+              font-size: 23px;
+              font-weight: 600;
+            }
+
+            p{
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 2;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              color: var(--h2);
+              font-size: 14px;
+              margin: 12px 0;
+            }
+            span{
+              margin-right: 15px;
+              display: inline-flex;
+              align-items: center;
+
+              i{
+                margin-right: 5px;
+                font-size: 17px;
+              }
+            }
+
+            span.active_type{
+              padding: 2px 15px;
+              border-radius: 5px;
+              color: #fff;
+              background: aqua;
+              font-size: 14px;
+              margin-right: 20px;
+            }
+
+          }
+
         }
       }
+      }
+
       
+    }
+
+    // 分页器
+    .list_pager{
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
   }
 
   .right{
     width:396px ;
+
+    // 个人名片
+
+    .mycard{
+      padding: 20px;
+      width: 100%;
+      background-color: var(--main_bg);
+      border-radius: 5px;
+      margin-bottom: 20px;
+
+      .title{
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+
+        h3{
+          color: aqua;
+          font-size: 20px;
+          font-weight: 700;
+          letter-spacing: .3em;
+          margin-bottom: 10px;
+        }
+        h4{
+          color: #e0bb53;
+          text-transform: uppercase;
+          font-style: italic;
+          font-weight: 700;
+          font-size: 22px;
+          letter-spacing: .2em;
+        }
+        img{
+          position: absolute;
+          right: 0;
+          top: 0;
+          height: 90px;
+          width: 90px;
+        }
+
+      }
+
+      .jieqi{
+
+        width: 100%;
+        height: 215px;
+        border-radius: 5px;
+        margin: 10px 0;
+        overflow: hidden;
+        transition: all .3s;
+        cursor: pointer;
+        &:hover{
+          transform: scale(1.03);
+        }
+
+        img{
+          width: 100%;
+          transform: translate(0px, -279px);
+        }
+      }
+
+      .info{
+       p{
+        margin-bottom: 5px;
+        font-size: 14px;
+        color: var(--text);
+       }
+      }
+
+    }
+
+
+    // 标签云
+    .gweb_label{
+      margin-bottom: 20px;
+
+      .bdoy{
+        padding: 20px;
+        border-radius: 0 0 5px 5px;
+        background-color: var(--main_bg);
+        margin-top: 1px;
+        ul{
+          display: flex;
+          flex-wrap: wrap;
+          li{
+            width: 33.33%;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--h2);
+            cursor: pointer;
+            i{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 20px;
+                height: 20px;
+                font-size: 10px;
+                color: var(--main_bg);
+                background-color: var(--active_label);
+                border-radius: 50%;
+                margin-left: 5px;
+              }
+
+              &:nth-child(3n+1),&:nth-child(3n+2){
+                border-right: 1px solid var(--bg_darken);
+              };
+
+               &:nth-child(6n+1),
+               &:nth-child(6n+2), 
+               &:nth-child(6n+3){
+                background-color: var(--bg);
+               }
+              
+          }
+        } 
+      }
+
+    }
+
+
+    // 建站信息
+
+    .body{
+      display: block;
+      border-radius: 0 0 5px 5px;
+      background-color: var(--main_bg);
+      margin-top: 1px;
+      padding: 10px 20px 20px;
+
+      div{
+        font-size: 16px;
+        margin-bottom: 8px;
+        b{
+          margin-right: 5px;
+        }
+        span{
+          font-size: 16px;
+          margin-left: 10px;
+        }
+
+        .my_info_img{
+          display: flex;
+          margin-top: 10px;
+          justify-content: space-around;
+          div{
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            img{
+              width: 100px;
+              height: 100px;
+            }
+          }
+
+
+        }
+      }
+
+      }
+
+
   }
 
 }
