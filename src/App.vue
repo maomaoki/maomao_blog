@@ -1,11 +1,14 @@
 <template>
-     <navbar></navbar>
+    <navbar></navbar>
     <router-view v-if="isRouterAlive"></router-view>  
+    <Footer></Footer>
+
 </template>
   
 <script lang='ts' setup>
 import { reactive, toRefs , ref, nextTick, provide,watch } from 'vue'
 import navbar from './components/Navber.vue'  
+import Footer from './components/Footer.vue'
 
 
 //-------- 监听路由 刷新 页面 和滚动到顶部

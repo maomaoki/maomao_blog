@@ -1,0 +1,46 @@
+/* 去除 默认样式 */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+img{
+    vertical-align: middle;
+    border-style: none;
+}
+
+a{
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+
+span{
+    font-size: 14px;
+}
+
+ul li{
+    list-style: none;
+}
+
+
+
+
+/* 限制 x 滚动条 */
+html {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* 让body 跟img 一样宽度  */
+body {
+    position: absolute;
+    width: 100vw;
+    overflow: hidden;
+}
+
+
+:root{
+    
+}

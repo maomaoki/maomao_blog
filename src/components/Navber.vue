@@ -139,12 +139,21 @@ const changeSearch = ()=>{
     isseach.value=isseach.value?"":"isseach"   
 }
 
+
 // 主体切换
 const chagneColor = ()=>{
     isglobal_color = !isglobal_color
     global_color.value = isglobal_color?"fa fa-sun-o":"fa fa-moon-o"
+    if(isglobal_color){
+        document.body.classList.remove("dark")
+    }else{
+        document.body.classList.add("dark")
+    }
 }
 
+
+
+ 
 
 // 滚动条事件
 

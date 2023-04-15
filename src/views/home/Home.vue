@@ -104,153 +104,151 @@ let active_card = reactive([
   </banner>
 
   <!-- 主页内容区域 -->
-  <div class="gweb_main">
 
-    <div class="left">
+    <div class="gweb_main">
 
-      <!-- 热搜卡片 -->
-      <card class="hotsearch" title="今日热搜" :main="true">
-        <span class="index">1</span>
-        <a href="#" class="link">离职一个月了还要教新人</a>
-        <span class="num">153.9万</span>
-      </card>
+      <div class="left">
 
-      <!-- 文章列表卡片 -->
-      <card title="博客文章" class="active_card">
-        <ul> 
-          <li v-for="(item,index) in active_card" :key="item.id && item.title">
-            <a :href="item.activeLink" class="">
-            <div class="left">
-              <div>
-                <img :src="item.imgLink" alt="">
+        <!-- 热搜卡片 -->
+        <card class="hotsearch" title="今日热搜" :main="true">
+          <span class="index">1</span>
+          <a href="#" class="link">离职一个月了还要教新人</a>
+          <span class="num">153.9万</span>
+        </card>
+
+        <!-- 文章列表卡片 -->
+        <card title="博客文章" class="active_card">
+          <ul> 
+            <li v-for="(item,index) in active_card" :key="item.id && item.title">
+              <a :href="item.activeLink" class="">
+              <div class="left">
+                <div>
+                  <img :src="item.imgLink" alt="">
+                </div>
               </div>
-            </div>
 
-            <div class="right">
-            
-              <h2>{{ item.title}}</h2>
-              <p>{{ item.active }}</p>
-              <div class="article_info">
-                <span class="active_type">{{ item.activeInfo.type==='0' ?'前端':'后端' }}</span>
-                <span><i class="fa fa-clock-o"></i>{{ item.activeInfo.time }}</span>
-                <span><i class="fa fa-thumbs-up"></i>{{ item.activeInfo.thumbs }}</span>
-                <span><i class="fa fa-eye"></i>{{ item.activeInfo.look }}</span>
-                <span><i class="fa fa-comments"></i>{{ item.activeInfo.comment }}</span>
-                <span><i class="fa fa-star-o"></i>{{ item.activeInfo.star }}</span>
+              <div class="right">
+              
+                <h2>{{ item.title}}</h2>
+                <p>{{ item.active }}</p>
+                <div class="article_info">
+                  <span class="active_type">{{ item.activeInfo.type==='0' ?'前端':'后端' }}</span>
+                  <span><i class="fa fa-clock-o"></i>{{ item.activeInfo.time }}</span>
+                  <span><i class="fa fa-thumbs-up"></i>{{ item.activeInfo.thumbs }}</span>
+                  <span><i class="fa fa-eye"></i>{{ item.activeInfo.look }}</span>
+                  <span><i class="fa fa-comments"></i>{{ item.activeInfo.comment }}</span>
+                  <span><i class="fa fa-star-o"></i>{{ item.activeInfo.star }}</span>
+                </div>
               </div>
-            </div>
-              </a>
-          </li>
-        </ul>
-      </card>
-
-      <!-- 分页器 -->
-      <pager class="list_pager"></pager>
-
-    </div>
-    <div class="right">
-        
-      <!-- 个人名片 -->
-      <div class="mycard">
-
-        <div class="title">
-          <h3>个人名片</h3>
-          <h4>MY</h4>
-          <h4>PROFILE</h4>
-          <img src="src/assets/images/400x400.png" alt="我的微信">
-        </div>
-        <div class="jieqi">
-          <img src="http://blog.fengfengzhidao.com/static/24_hourse/4.png" alt="">
-        </div>
-        <div class="info">
-          <p>Name 猫猫mao</p>
-          <p>JOB 前端小菜鸡</p>
-          <p>ADDR 喵星光之国</p>
-        </div>
-      </div>
-
-
-      <!-- 标签云 -->
-      <card title="标签云" class="gweb_label">
-        <div class="bdoy">
-          <ul>
-            <li>
-              <span>前端</span>
-              <i>24</i>
-            </li>
-            <li>
-              <span>前端</span>
-              <i>24</i>
-            </li>
-            <li>
-              <span>前端</span>
-              <i>24</i>
-            </li>
-            <li>
-              <span>前端</span>
-              <i>24</i>
-            </li>
-            <li>
-              <span>前端</span>
-              <i>24</i>
-            </li>
-            <li>
-              <span>前端</span>
-              <i>24</i>
-            </li>
-            <li>
-              <span>前端</span>
-              <i>24</i>
+                </a>
             </li>
           </ul>
+        </card>
+
+        <!-- 分页器 -->
+        <pager class="list_pager"></pager>
+
+      </div>
+      <div class="right">
+          
+        <!-- 个人名片 -->
+        <div class="mycard">
+
+          <div class="title">
+            <h3>个人名片</h3>
+            <h4>MY</h4>
+            <h4>PROFILE</h4>
+            <img src="src/assets/images/400x400.png" alt="我的微信">
+          </div>
+          <div class="jieqi">
+            <img src="http://blog.fengfengzhidao.com/static/24_hourse/4.png" alt="">
+          </div>
+          <div class="info">
+            <p>Name 猫猫mao</p>
+            <p>JOB 前端小菜鸡</p>
+            <p>ADDR 喵星光之国</p>
+          </div>
         </div>
-      </card>
 
-      <!-- 建站信息 -->
-      <card title="建站信息" class="gweb_info">
 
-        <div class="body">
+        <!-- 标签云 -->
+        <card title="标签云" class="gweb_label">
+            <ul>
+              <li>
+                <span>前端</span>
+                <i>24</i>
+              </li>
+              <li>
+                <span>前端</span>
+                <i>24</i>
+              </li>
+              <li>
+                <span>前端</span>
+                <i>24</i>
+              </li>
+              <li>
+                <span>前端</span>
+                <i>24</i>
+              </li>
+              <li>
+                <span>前端</span>
+                <i>24</i>
+              </li>
+              <li>
+                <span>前端</span>
+                <i>24</i>
+              </li>
+              <li>
+                <span>前端</span>
+                <i>24</i>
+              </li>
+            </ul>
+        </card>
 
-          <div>
-            <b>建站时间:</b>
-            <span>2022-12-28</span>
-          </div>
-          <div>
-            <b>网站程序:</b>
-            <span>Vue3+Go</span>
-          </div>
-          <div>
-            <b>运行时间:</b>
-            <span>58天10时22分14秒</span>
-          </div>
-          <div>
-            <b>总访问量:</b>
-            <span>66666</span>
-          </div>
-          <div>
-            <b>博客文章:</b>
-            <span>12</span>
-          </div>
-          <div>
-            <b>联系我:</b>
-            <div class="my_info_img">
-              <div class="qq">
-                <img src="src/assets/images/400x400.png" alt="">
-                <span>我的QQ</span>
-              </div>
-              <div class="wx">
-                <img src="src/assets/images/400x400.png" alt="">
-                <span>我的WX</span>
+        <!-- 建站信息 -->
+        <card title="建站信息" class="gweb_info">
+
+            <div>
+              <b>建站时间:</b>
+              <span>2022-12-28</span>
+            </div>
+            <div>
+              <b>网站程序:</b>
+              <span>Vue3+Go</span>
+            </div>
+            <div>
+              <b>运行时间:</b>
+              <span>58天10时22分14秒</span>
+            </div>
+            <div>
+              <b>总访问量:</b>
+              <span>66666</span>
+            </div>
+            <div>
+              <b>博客文章:</b>
+              <span>12</span>
+            </div>
+            <div>
+              <b>联系我:</b>
+              <div class="my_info_img">
+                <div class="qq">
+                  <img src="src/assets/images/400x400.png" alt="">
+                  <span>我的QQ</span>
+                </div>
+                <div class="wx">
+                  <img src="src/assets/images/400x400.png" alt="">
+                  <span>我的WX</span>
+                </div>
               </div>
             </div>
-          </div>
 
-        </div>
+        </card>
 
-      </card>
+      </div>
 
     </div>
-  </div>
+
+  
    
 </template>
     
@@ -267,6 +265,7 @@ let active_card = reactive([
 
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
 
 
   .left{
@@ -473,11 +472,57 @@ let active_card = reactive([
     .gweb_label{
       margin-bottom: 20px;
 
-      .bdoy{
+      .body{
         padding: 20px;
         border-radius: 0 0 5px 5px;
         background-color: var(--main_bg);
         margin-top: 1px;
+        position: relative;
+
+        @keyframes move_box {
+            0% {
+                left: 0;
+                top: 0
+            }
+
+            25% {
+                left: calc(100% - 20px);
+                top: 0
+            }
+
+            50% {
+                top: calc(100% - 20px);
+                left: calc(100% - 20px)
+            }
+
+            75% {
+                left: 0;
+                top: calc(100% - 20px)
+            }
+
+            to {
+                left: 0;
+                top: 0
+            }
+        }
+
+        // 小球
+        &::before{
+          display: block;
+          position: absolute;
+          content: "";
+          width: 20px;
+          height: 20px;
+          background-color: var(--active);
+          -webkit-animation-name: move_box;
+          animation-name: move_box;
+          -webkit-animation-duration: 5s;
+          animation-duration: 5s;
+          -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite
+        }
+
+
         ul{
           display: flex;
           flex-wrap: wrap;
