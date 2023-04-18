@@ -1,13 +1,14 @@
 <template>
-  <div>
-    <p>search</p>
-  </div>
+    <div>
+      
+    </div>
 </template>
-    
+
 <script lang='ts' setup>
-import { reactive, toRefs , ref } from 'vue'
-    
+import { ref } from "vue" 
+
 </script>
-<style lang='less' scoped >
-    
+
+<style lang="less" >
+
 </style>
