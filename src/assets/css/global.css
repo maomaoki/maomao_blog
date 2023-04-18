@@ -42,5 +42,168 @@ body {
 
 
 :root{
+
+    /* body */
+    --body_bg:#f0eeee;
+
+
+    /* navber */
+    --logo_color:aqua;
+    --font_color:#fff;
+    --search_color:#fff;
+
+    --isseach_btn:#c1c1c1;
+    --isseach_inp:#c1c1c1; 
+
+    --sun_color:rgb(255, 136, 0);
+    --moon_color:aqua;
+
+    --nav_bg:#fff;
+    --hove_color:aqua;
     
+    
+     /* nav 滚动后效果 */
+     --show_logo_color:#333;
+     --show_font_color:#333;
+
+     --show_search_color:#333;
+     
+     --show_isseach_btn:#c1c1c1;
+     --show_isseach_inp:#c1c1c1; 
+
+     --show_sun_color:#333;
+     --show_moon_color:#333;
+
+
+
+     /* 热搜链接颜色 */
+     --a_link:#1890ff;
+
+     /* 卡片背景颜色 */
+     --card_bg:#fff;
+     --h2:#333;
+     --span_color:#333;
+
+
+    /* 分页器 */
+    --pg_bg:#fff;
+    --pg_boder:#d9d9d9;
+    --pg_hove:aqua;
+    --pg_color:inherit;
+
+    --active_btn:#d9d9d9;
+
+
+    /* mycard 字体 */
+    --mycard_color:#b93829;
+    --mycard_text:#555555;
+
+
+    /* 标签云 */
+    --ball:#1890ff;
+    --label_text:#333;
+    --label_body:#1890ff;
+    --label_body_text:#fff;
+
+    --bg_darken:#e2e2e2;
+    --bg_label_color:#f0eeee;
+    
+
+
+    /* 底部 */
+    --footer_bg:#fff;
+    --footer_color:#333;
+
+
+
+    /* 选中 */
+    --active:#1890ff;
+    --hover_color:aqua;
+
+
+
+
+    /* 新闻 */
+    --news_text:#333;
+    --news_bg:#fff;
+    --news_line_color:#333;
+}
+
+
+
+.dark{
+
+    --body_bg:#2a2a2a;
+
+
+    --logo_color:aqua;
+    --font_color:#fff;
+    --search_color:#fff;
+
+    --isseach_btn:#c1c1c1;
+    --isseach_inp:#c1c1c1; 
+
+    --sun_color:rgb(255, 136, 0);
+    --moon_color:aqua;
+
+    --hove_color:aqua;
+    
+     /* nav 滚动后效果 */
+
+     --nav_bg:#222429;
+
+     --show_logo_color:aqua;
+     --show_font_color:#5a5a5a;
+
+     --show_search_color:#5a5a5a;
+     
+     --show_isseach_btn:#5a5a5a;
+     --show_isseach_inp:#5a5a5a; 
+
+     --show_sun_color:#5a5a5a;
+     --show_moon_color:#5a5a5a;
+
+
+    /* 卡片背景颜色 */
+    --card_bg:#222429;
+    /* 整体字体颜色 */
+    --span_color:#5a5a5a;
+    /* 标题颜色 */
+    --h2:#5a5a5a;
+
+    /* 分页器 */
+    --pg_bg:#222429;
+    --pg_boder:#222429;
+    --pg_hove:aqua;
+    --pg_color:inherit;
+    --active_btn:#5a5a5a;
+
+
+    /* mycard 字体 */
+    --mycard_text:#5a5a5a;
+
+    /* 标签云 */
+    --ball:#1890ff;
+    --label_text:#707070;
+    --label_body:#1890ff;
+    --label_body_text:#333;
+
+    --bg_darken:#0c1e23;
+    --bg_label_color:#071418;
+
+
+    /* 建站信息 */
+    --info_color:#707070;
+
+
+    /* 底部 */
+    --footer_bg:#222429;
+    --footer_color:#5a5a5a;
+
+
+
+    --news_bg:#141414;
+    --news_text:#555;
+    --news_line_color:#fff;
+
 }

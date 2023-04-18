@@ -9,7 +9,7 @@ const routes: RouteRecordRaw[]= [
         component: () => import("../views/home/Home.vue")
     },
     {
-        path:"/",
+        path:"/:catchAll(.*)",
         redirect:"/home"
     },
     {
@@ -33,13 +33,25 @@ const routes: RouteRecordRaw[]= [
         name: "mood",
         component: () => import("../views/home/Mood.vue")
     },
+
+    {
+        path:"/login",
+        name:"login",
+        component:()=>import("../views/user/Login.vue")
+    },
+    {
+        path:"/sign",
+        name:"sign",
+        component:()=>import("../views/user/Sign.vue")
+    },
+   
     
 ]
 
 
 const router = createRouter({
 
-    history: createWebHashHistory(),  //路由模式
+    history: createWebHistory(),  //路由模式
 
     // 路由配置(对象同名)
     routes,

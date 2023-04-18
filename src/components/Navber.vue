@@ -1,56 +1,3 @@
-<template>
-  <div :class="isScolly?'gweb_nav show':'gweb_nav'">
-   
-    <div class="gweb_nav_content">
-
-        <div class="gweb_nav_log">
-
-            <p class="p1">猫猫谈心</p>
-            <p class="p2">MaoMaoLove</p>
-            
-        </div>
-        
-        <div class="gweb_nav_left">
-            <div class="nav_list">
-
-                <router-link :to="{name:item.link}" v-for="item in link_list" :key="item.id" custom v-slot="{navigate,isActive}">
-                   <span @click="navigate">{{ item.name }}</span>
-                </router-link>
-
-            </div>
-           
-            <div class="nav_seach">
-                <div class="search_btn">
-                    <input type="text" :class="isseach">
-                    <button :class="isseach" @click="changeSearch"><i class="fa fa-search isseach"></i></button>
-                </div>
-            </div>
-        </div>
-
-        <div class="gweb_nav_right">
-
-            <button class="sun" @click="chagneColor">
-                <!-- <i class="fa fa-sun-o"></i> -->
-                <i :class="global_color"></i>
-            </button>
-           
-            <menu-down 
-            :list="list_down"
-            title="猫猫"
-            class="menu_info"
-            :spanColor="spanColor"
-            :line="line"
-            :bgColor="bgColor"
-            :hoverColor="hoverColor">  
-            </menu-down>
-            
-        </div>
-        
-    </div>
-
-  </div>
-</template>
-    
 <script lang='ts' setup>
 // 引入组件(下拉菜单)
 import MenuDown from '../tools/MenuDown.vue'
@@ -130,7 +77,7 @@ let isseach = ref("")
 // 主题样式(太阳-月亮)
 let global_color = ref("fa fa-sun-o")
 // 不想写太长class类名 加个boolean
-let isglobal_color = true
+let isglobal_color = ref(true)
 
 
 
@@ -142,9 +89,9 @@ const changeSearch = ()=>{
 
 // 主体切换
 const chagneColor = ()=>{
-    isglobal_color = !isglobal_color
-    global_color.value = isglobal_color?"fa fa-sun-o":"fa fa-moon-o"
-    if(isglobal_color){
+    isglobal_color.value = !isglobal_color.value
+    global_color.value = isglobal_color.value?"fa fa-sun-o":"fa fa-moon-o"
+    if(isglobal_color.value){
         document.body.classList.remove("dark")
     }else{
         document.body.classList.add("dark")
@@ -164,17 +111,30 @@ let spanColor = ref("#fff")
 let bgColor =  ref('#fff')
 let line = ref("#fff")
 let hoverColor = ref("aqua")
- 
+let titleColor = ref("#fff")
 
 
 // 监听 isScolly.value 
 watch(()=>isScolly.value,()=>{
 
-spanColor.value = isScolly.value?'#333':"#fff"
-bgColor.value =  isScolly.value?'#fff':"#fff"
-line.value = isScolly.value?'#333':"#fff"
-hoverColor.value = isScolly.value?'aqua':"aqua"
-    
+    spanColor.value = isScolly.value?'#333':"#fff"
+    bgColor.value =  isScolly.value?'#fff':"#fff"
+    line.value = isScolly.value?'#333':"#fff"
+    hoverColor.value = isScolly.value?'aqua':"aqua"
+    titleColor.value = isScolly.value?'#333':'#fff'    
+})
+
+watch(()=>isglobal_color.value,()=>{
+
+    let s1 = spanColor.value
+    let s2 = bgColor.value
+    let s3 = line.value
+    let s4 = hoverColor.value
+
+    spanColor.value = isglobal_color.value?'fff':"#fff"
+    bgColor.value =  isglobal_color.value?s2:"#fff"
+    line.value = isglobal_color.value?s3:"#fff"
+    hoverColor.value = isglobal_color.value?s4:"aqua"
 })
 
 
@@ -195,6 +155,67 @@ onBeforeUnmount(()=>{
 
 
 </script>
+
+
+
+<template>
+  <div :class="isScolly?'gweb_nav show':'gweb_nav'">
+   
+    <div class="gweb_nav_content">
+
+        <div class="gweb_nav_log">
+
+            <p class="p1">猫猫谈心</p>
+            <p class="p2">MaoMaoLove</p>
+            
+        </div>
+        
+        <div class="gweb_nav_left">
+            <div class="nav_list">
+                <router-link :to="{name:item.link}" v-for="item in link_list" :key="item.id" custom v-slot="{navigate,isActive}">
+                   <span @click="navigate" :class="isActive?'active':''">{{ item.name }}</span>
+                </router-link>
+            </div>
+           
+            <div class="nav_seach">
+                <div class="search_btn">
+                    <input type="text" :class="isseach">
+                    <button :class="isseach" @click="changeSearch"><i class="fa fa-search isseach"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="gweb_nav_right">
+
+            <button class="sun" @click="chagneColor">
+                <!-- <i class="fa fa-sun-o"></i> -->
+                <i :class="global_color"></i>
+            </button>
+           
+            <div class="login_box">
+                <router-link to="/login">登录</router-link>
+                <router-link to="/sign">注册</router-link>
+            </div>
+
+            <menu-down v-if="false"
+            :list="list_down"
+            title="猫猫"
+            class="menu_info"
+            :titleColor="titleColor"
+            :spanColor="spanColor"
+            :line="line"
+            :bgColor="bgColor"
+            :hoverColor="hoverColor">  
+            </menu-down>
+            
+        </div>
+        
+    </div>
+
+  </div>
+</template>
+    
+
 <style lang='less'>
     
     .gweb_nav{
@@ -363,6 +384,7 @@ onBeforeUnmount(()=>{
 
         // 按钮列表
         .gweb_nav_left{
+           
               span{
                 color: var(--font_color);
                 &:hover{
@@ -371,6 +393,9 @@ onBeforeUnmount(()=>{
             
                 }
 
+                .nav_list .active{
+                color: aqua;
+                }
                 button{
                     color: var(--search_color);
                     border: none;
@@ -382,11 +407,13 @@ onBeforeUnmount(()=>{
                 }
 
                 button.isseach{
-                    border: 1px solid #c1c1c1;
+                    border: 1px solid;
+                    border-color: var(--isseach_btn);
                 }
 
                 input.isseach{
-                    border: 1px solid #c1c1c1;
+                    border: 1px solid ;
+                    border-color: var(--isseach_inp);
                 }
 
         }
@@ -408,6 +435,14 @@ onBeforeUnmount(()=>{
                         }
                     }
             } 
+
+
+            .login_box{
+                a{
+                    margin: 0 10px;
+                    color: var(--font_color);
+                }
+            }
         }   
 
     }
@@ -416,7 +451,7 @@ onBeforeUnmount(()=>{
 
     // 滚动效果
     .gweb_nav.show{
-        background-color: #fff;
+        background-color: var(--nav_bg);
 
         .gweb_nav_log{
             .p1{
@@ -435,6 +470,10 @@ onBeforeUnmount(()=>{
             .nav_list span{
             color: var(--show_font_color) 
                 }
+                
+            .nav_list .active{
+                color: aqua;
+                }
 
                 button{
                     color: var(--show_search_color);
@@ -447,11 +486,13 @@ onBeforeUnmount(()=>{
                 }
 
                 button.isseach{
-                    border: 1px solid #c1c1c1;
+                    border: 1px solid;
+                    border-color: var(--show_isseach_btn);
                 }
 
                 input.isseach{
-                    border: 1px solid #c1c1c1;
+                    border: 1px solid ;
+                    border-color: var(--show_isseach_btn);
                 }
 
         }
@@ -473,6 +514,11 @@ onBeforeUnmount(()=>{
                         }
                     }
             } 
+            .login_box{
+                a{
+                    color: var(--show_font_color);
+                }
+            }
         }  
 
     }   

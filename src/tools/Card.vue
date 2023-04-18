@@ -37,7 +37,10 @@ import { reactive, toRefs , ref ,defineProps} from 'vue'
             justify-content: space-between;
             align-items: center;
             border-radius: 5px 5px 0 0;
-            background-color: var(--main_bg);
+            background-color: var(--card_bg);
+            a{
+                color: var(--span_color);
+            }
             h2{
                 font-size: 20px;
                 font-weight: 600;

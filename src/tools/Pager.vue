@@ -99,12 +99,14 @@ const props = computed(()=>{
             height: 100%;
             padding: 0;
             text-align: center;
-            background-color: #fff;
-            border: 1px solid #d9d9d9;
+            background-color: var(--pg_bg);
+            border: 1px solid;
+            border-color: var(--pg_boder);
             border-radius: 2px;
             outline: none;
             transition: all .3s; 
             line-height: 32px;
+            color: var(--pg_color);
             cursor: pointer;
             a{
                 display: block;
@@ -114,8 +116,8 @@ const props = computed(()=>{
             }
 
             &:hover{
-              border-color: var(--hove_color);
-              color: var(--hove_color);
+              border-color: var(--pg_hove);
+              color: var(--pg_hove);
             }
 
             i{
@@ -125,21 +127,26 @@ const props = computed(()=>{
             }
         }
 
+        // 左右按钮 到边界
         button.active{
             cursor:not-allowed;
+            border-color:var(--pg_boder);
+            color: var(--active_btn);
             &:hover{
-            border: 1px solid #d9d9d9;
-            color: #b7b7bd;
+            border: 1px solid;
+            border-color:var(--pg_boder);
+            color: var(--active_btn);
             }
         }
 
         
     }
 
+    // 选中 框
     .active_pager.active{
         button{
-        border-color: var(--hove_color);
-        color: var(--hove_color);
+        border-color: var(--pg_hove);
+        color: var(--pg_hove);
         }
     }
 

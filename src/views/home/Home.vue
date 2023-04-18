@@ -1,96 +1,29 @@
 <script lang='ts' setup>
-import banner from '../../components/Banner.vue'
-import card from '../../tools/Card.vue'
-import pager from '../../tools/Pager.vue'
 
 import { reactive, toRefs , ref ,inject, onMounted , watch } from 'vue'
 
 
-// 到时请求数据
+import banner from '../../components/Banner.vue'
+import card from '../../tools/Card.vue'
+import pager from '../../tools/Pager.vue'
+import Navber from '../../components/Navber.vue'
+import Footer from '../../components/Footer.vue'
+
 // 轮播图照片数据
-let banner_img_list = reactive([
-{
-  id:1,
-  img_link:"src/assets/images/1.jpg"
-},
-{
-  id:2,
-  img_link:"src/assets/images/2.jpg"
-},
-{
-  id:3,
-  img_link:"src/assets/images/3.jpg"
-},
-{
-  id:4,
-  img_link:"src/assets/images/4.jpg"
-},
-{
-  id:5,
-  img_link:"src/assets/images/5.jpg"
-},
+import { banner_img_list } from '../../request/banner_img'
 
-])
-
-
-// 文章卡片数据
-
-let active_card = reactive([
-  {
-    id:1,
-    imgLink:"http://blog.fengfengzhidao.com/uploads/file/105747KJAJa.jpg",
-    title:"vue全基础",
-    activeLink:"#",
-    active:"vue基本概述Vue (读音 /vjuː/，类似于 view) 是一套用于构建用户界面的渐进式框架。Vue.js是一套构建用户界面的渐进式框架，采用自底向上增量开发的设计。Vue的核心库关注于",
-    activeInfo:{
-      type:"0",
-      time:"2023-03-26",
-      thumbs:"3",
-      look:"66",
-      comment:"20",
-      star:"99"
-    }
-  },
-  {
-    id:2,
-    imgLink:"	http://blog.fengfengzhidao.com/uploads/file/235920pM89Q.jpg",
-    title:"首页的一些组件",
-    activeLink:"#",
-    active:`gvb_cardemplate><div class="gvb_card_view"><div class="title"><h2>{{ props.titl`,
-    activeInfo:{
-      type:"1",
-      time:"2023-03-28",
-      thumbs:"36",
-      look:"666",
-      comment:"99",
-      star:"99"
-    }
-  },
-  {
-    id:3,
-    imgLink:"http://blog.fengfengzhidao.com/uploads/file/33.jpg",
-    title:"首页的一些组件",
-    activeLink:"#",
-    active:`gvb_cardemplate><div class="gvb_card_view"><div class="title"><h2>{{ props.titl`,
-    activeInfo:{
-      type:"1",
-      time:"2023-03-28",
-      thumbs:"36",
-      look:"666",
-      comment:"99",
-      star:"99"
-    }
-  }
-])
-
-
+//文章卡片数据
+import { active_card } from '../../request/active_card'
 
 
 </script>
 
 
+
 <template>
  
+
+ <Navber></Navber>
 
 
   <banner
@@ -164,9 +97,9 @@ let active_card = reactive([
             <img src="http://blog.fengfengzhidao.com/static/24_hourse/4.png" alt="">
           </div>
           <div class="info">
-            <p>Name 猫猫mao</p>
-            <p>JOB 前端小菜鸡</p>
-            <p>ADDR 喵星光之国</p>
+            <p><span>Name</span> 猫猫mao</p>
+            <p><span>JOB</span> 前端小菜鸡</p>
+            <p><span>ADDR</span> 喵星光之国</p>
           </div>
         </div>
 
@@ -249,6 +182,7 @@ let active_card = reactive([
     </div>
 
   
+  <Footer></Footer>  
    
 </template>
     
@@ -271,6 +205,7 @@ let active_card = reactive([
   .left{
 
     width: calc(100% - 396px - 20px);
+    color: var(--span_color);
 
     // 热搜卡片
     .hotsearch{
@@ -278,7 +213,7 @@ let active_card = reactive([
 
       .body{
         padding: 10px 20px 20px; 
-        background-color: var(--main_bg);
+        background-color: var(--card_bg);
         .index{
                 width: 5%;
             }
@@ -289,6 +224,7 @@ let active_card = reactive([
             .num{
                 width: 20%;
                 text-align: right;
+                color: var(--span_color);
             }
       }
     }
@@ -309,7 +245,7 @@ let active_card = reactive([
 
           a{
             display: flex;
-            background-color: var(--main_bg);
+            background-color: var(--card_bg);
             border-radius: 5px;
             margin-bottom: 20px;
            
@@ -345,6 +281,7 @@ let active_card = reactive([
             h2{
               font-size: 23px;
               font-weight: 600;
+              color: var(--h2);
             }
 
             p{
@@ -353,7 +290,7 @@ let active_card = reactive([
               -webkit-line-clamp: 2;
               overflow: hidden;
               text-overflow: ellipsis;
-              color: var(--h2);
+              color: var(--span_color);
               font-size: 14px;
               margin: 12px 0;
             }
@@ -361,10 +298,11 @@ let active_card = reactive([
               margin-right: 15px;
               display: inline-flex;
               align-items: center;
+              color: var(--span_color);
 
               i{
                 margin-right: 5px;
-                font-size: 17px;
+                font-size: 17px;  
               }
             }
 
@@ -403,7 +341,7 @@ let active_card = reactive([
     .mycard{
       padding: 20px;
       width: 100%;
-      background-color: var(--main_bg);
+      background-color: var(--card_bg);
       border-radius: 5px;
       margin-bottom: 20px;
 
@@ -461,7 +399,10 @@ let active_card = reactive([
        p{
         margin-bottom: 5px;
         font-size: 14px;
-        color: var(--text);
+        color: var(--mycard_text);
+        span{
+          color: var(--mycard_color);
+        }
        }
       }
 
@@ -475,7 +416,7 @@ let active_card = reactive([
       .body{
         padding: 20px;
         border-radius: 0 0 5px 5px;
-        background-color: var(--main_bg);
+        background-color: var(--card_bg);
         margin-top: 1px;
         position: relative;
 
@@ -513,7 +454,7 @@ let active_card = reactive([
           content: "";
           width: 20px;
           height: 20px;
-          background-color: var(--active);
+          background-color: var(--ball);
           -webkit-animation-name: move_box;
           animation-name: move_box;
           -webkit-animation-duration: 5s;
@@ -532,8 +473,9 @@ let active_card = reactive([
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--h2);
+            color: var(--label_text);
             cursor: pointer;
+            span{font-size: 16px;}
             i{
                 display: flex;
                 justify-content: center;
@@ -541,8 +483,8 @@ let active_card = reactive([
                 width: 20px;
                 height: 20px;
                 font-size: 10px;
-                color: var(--main_bg);
-                background-color: var(--active_label);
+                color: var(--label_body_text);
+                background-color: var(--label_body);
                 border-radius: 50%;
                 margin-left: 5px;
               }
@@ -554,7 +496,7 @@ let active_card = reactive([
                &:nth-child(6n+1),
                &:nth-child(6n+2), 
                &:nth-child(6n+3){
-                background-color: var(--bg);
+                background-color: var(--bg_label_color);
                }
               
           }
@@ -569,13 +511,14 @@ let active_card = reactive([
     .body{
       display: block;
       border-radius: 0 0 5px 5px;
-      background-color: var(--main_bg);
+      background-color: var(--card_bg);
       margin-top: 1px;
       padding: 10px 20px 20px;
 
       div{
         font-size: 16px;
         margin-bottom: 8px;
+        color: var(--info_color);
         b{
           margin-right: 5px;
         }

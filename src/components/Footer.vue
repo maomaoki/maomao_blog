@@ -55,6 +55,8 @@
          
 
        </div>
+
+       <p class="p1">联系邮箱: 546211257@qq.com</p>
     </div>
   </div>
 </template>
@@ -69,7 +71,7 @@ import { reactive, toRefs , ref } from 'vue'
         display: flex;
         padding: 25px 0;
         width: 100%;
-        background-color: var(--main_bg);
+        background-color: var(--footer_bg);
 
         .left{
             display: flex;
@@ -80,6 +82,7 @@ import { reactive, toRefs , ref } from 'vue'
             p{
                 margin-bottom: 10px;
                 font-size: 14px;
+                color: var(--footer_color);
             }
 
             .thank{
@@ -122,7 +125,7 @@ import { reactive, toRefs , ref } from 'vue'
                     margin-right: 5px;
                 }
                 a{
-                    color: var(--text);
+                    color: var(--footer_color);
                 }
             }
 
@@ -163,6 +166,11 @@ import { reactive, toRefs , ref } from 'vue'
                     width: 30px;
                 }
                 
+            }
+
+            .p1{
+                color: var(--footer_color);
+                font-size: 14px;
             }
         }
     }

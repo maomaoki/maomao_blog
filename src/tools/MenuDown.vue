@@ -26,6 +26,10 @@ let props = defineProps({
         type:String,
         default:"maomao"
     },
+    titleColor:{
+        type:String,
+        default:"#fff"
+    },
 
     list:{
         type:Object, 
@@ -66,7 +70,7 @@ let props = defineProps({
                 width: 100%;
                 text-align: center;
                 padding: 10px 0;
-                color:v-bind(spanColor);
+                color:v-bind(titleColor);
                 &:hover{
                     color: v-bind(hoverColor);
                 }
@@ -94,7 +98,7 @@ let props = defineProps({
                     padding: 6px;  
                     border-bottom: 1px dashed; 
                     border-bottom-color: v-bind(line);
-                    color: v-bind(bgColor);
+                    color: v-bind(spanColor);
                     transition: all 0.3s;
 
                     &:hover{
